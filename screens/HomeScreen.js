@@ -6,7 +6,8 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
-  FlatList
+  FlatList,
+  Dimensions
 } from 'react-native'
 import React, { useState } from 'react'
 import { StatusBar } from 'expo-status-bar'
@@ -18,16 +19,19 @@ import { categories, coffeeItems } from '../constants'
 import Carousel from 'react-native-snap-carousel'
 import CoffeeCard from '../components/CoffeeCard'
 
+const { width, height } = Dimensions.get('window')
+
 export default function HomeScreen() {
   const [activeCategory, setActiveCategory] = useState(2)
 
   return (
     <View className='flex-1 relative bg-white'>
       <StatusBar />
-      {/* <Image
+      <Image
         source={require('../assets/images/beansBackground1.png')}
-        style={{ height: 220 }}
-      /> */}
+        style={{ height: height * 0.2 }}
+        className='w-full absolute -top-5 opacity-10'
+      />
 
       <SafeAreaView className='flex-1'>
         {/* Avatar and Bell icon */}
@@ -38,7 +42,7 @@ export default function HomeScreen() {
           />
           <View className='flex-row items-center space-x-2'>
             <MapPinIcon size={25} color={themeColors.bgLight} />
-            <Text className='text-base font-semibold'>Paris</Text>
+            <Text className='text-base font-semibold'>Paris, France</Text>
           </View>
           <BellIcon size={27} color='black' />
         </View>
