@@ -14,7 +14,9 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { MagnifyingGlassIcon, MapPinIcon } from 'react-native-heroicons/solid'
 import { BellIcon } from 'react-native-heroicons/outline'
 import { themeColors } from '../theme'
-import { categories } from '../constants'
+import { categories, coffeeItems } from '../constants'
+import Carousel from 'react-native-snap-carousel'
+import CoffeeCard from '../components/CoffeeCard'
 
 export default function HomeScreen() {
   const [activeCategory, setActiveCategory] = useState(2)
@@ -85,6 +87,22 @@ export default function HomeScreen() {
                 </TouchableOpacity>
               )
             }}
+          />
+        </View>
+
+        {/* Carousel Coffee cards */}
+        <View className='mt-16 py-2'>
+          <Carousel
+            containerCustomStyle={{ overflow: 'visible' }}
+            data={coffeeItems}
+            loop={true}
+            renderItem={({ item }) => <CoffeeCard item={item} />}
+            firstItem={1}
+            inactiveSlideOpacity={0.7} // inactive slides opacity
+            inactiveSlideScale={0.77} // inactive slides size
+            sliderWidth={400} // actual slide width
+            itemWidth={260} // card width
+            slideStyle={{ display: 'flex', alignItems: 'center' }}
           />
         </View>
       </SafeAreaView>
