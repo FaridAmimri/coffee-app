@@ -48,7 +48,7 @@ export default function HomeScreen() {
         </View>
 
         {/* Search Bar */}
-        <View className='mx-5 mt-14'>
+        <View className='mx-5 mt-6'>
           <View className='flex-row justify-center items-center rounded-full p-1 bg-[#e6e6e6]'>
             <TextInput
               placeholder='Search'
