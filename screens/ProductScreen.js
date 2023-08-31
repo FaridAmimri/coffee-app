@@ -16,12 +16,35 @@ import {
 } from 'react-native-heroicons/solid'
 import { useNavigation } from '@react-navigation/native'
 import { themeColors } from '../theme'
+import { useDispatch } from 'react-redux'
+import { addToCart } from '../redux/cartSlice'
 
 export default function ProductScreen(props) {
-  const item = props.route.params
+  let item = props.route.params
   const navigation = useNavigation()
+  const dispatch = useDispatch()
 
+  const [product, setProduct] = useState(item)
   const [size, setSize] = useState('small')
+  const [quantity, setQuantity] = useState(1)
+
+  const handleQuantity = (type) => {
+    if (type === 'dec') {
+      quantity > 1 && setQuantity(quantity - 1)
+    } else {
+      setQuantity(quantity + 1)
+    }
+  }
+
+  const handleCart = () => {
+    dispatch(
+      addToCart({
+        ...product,
+        quantity: quantity
+      })
+    )
+    navigation.navigate('Cart')
+  }
 
   return (
     <View className='flex-1'>
@@ -164,16 +187,16 @@ export default function ProductScreen(props) {
             </Text>
           </View>
           <View className='flex-row items-center space-x-4 border-gray-500 border rounded-full p-1 px-4'>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => handleQuantity('dec')}>
               <MinusIcon size={20} strokeWidth={3} color={themeColors.text} />
             </TouchableOpacity>
             <Text
               style={{ color: themeColors.text }}
               className='font-extrabold text-lg'
             >
-              2
+              {quantity}
             </Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => handleQuantity('inc')}>
               <PlusIcon size={20} strokeWidth={3} color={themeColors.text} />
             </TouchableOpacity>
           </View>
@@ -187,6 +210,7 @@ export default function ProductScreen(props) {
           <TouchableOpacity
             style={{ backgroundColor: themeColors.bgLight }}
             className='flex-1 p-5 rounded-full ml-3'
+            onPress={() => handleCart()}
           >
             <Text className='text-center text-base font-semibold text-white'>
               Buy now
