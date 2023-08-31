@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { Dimensions, LogBox, Platform, Text, View } from 'react-native'
 import HomeScreen from '../screens/HomeScreen'
 import ProductScreen from '../screens/ProductScreen'
+import CartScreen from '../screens/CartScreen'
 import { themeColors } from '../theme'
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -45,6 +46,11 @@ export default function Navigation() {
           name='Product'
           options={{ headerShown: false }}
           component={ProductScreen}
+        />
+        <Stack.Screen
+          name='Cart'
+          options={{ headerShown: false }}
+          component={CartScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
