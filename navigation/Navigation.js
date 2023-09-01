@@ -78,8 +78,8 @@ function HomeTabs() {
       })}
     >
       <Tab.Screen name='home' component={HomeScreen} />
-      <Tab.Screen name='favourite' component={HomeScreen} />
-      <Tab.Screen name='cart' component={HomeScreen} />
+      <Tab.Screen name='favourite' component={ProductScreen} />
+      <Tab.Screen name='cart' component={CartScreen} />
     </Tab.Navigator>
   )
 }

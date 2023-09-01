@@ -40,6 +40,7 @@ export default function ProductScreen(props) {
     dispatch(
       addToCart({
         ...product,
+        size: size,
         quantity: quantity
       })
     )
